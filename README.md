@@ -31,3 +31,11 @@
 * http://devcolibri.com/3068
 * https://github.com/buckyroberts/Source-Code-from-Tutorials/tree/master/JavaFX
 * http://docs.oracle.com/javase/8/javafx/get-started-tutorial/jfx-overview.htm#JFXST784
+
+## Работа с SceneBuilder
+* Устанавливаем http://gluonhq.com/labs/scene-builder/#download;
+* Заходим в intellij idea;
+* Правой кнопкой мыши нажимаем на файл с расширением 'fxml';
+* Выбираем пункт меню 'Open with SceneBuiler';
+* Редактируем;
+* Сохраняем в тот же файл.
