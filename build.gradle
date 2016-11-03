@@ -1,0 +1,31 @@
+group 'ru.sibmask'
+version '1.0-SNAPSHOT'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.13'
+  distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+
+    // turn on logging
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.1.7'
+
+    // groovy
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.7'
+
+    // testing
+    testCompile("org.spockframework:spock-core:1.0-groovy-2.4")
+}
