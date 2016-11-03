@@ -26,4 +26,8 @@
     * Не выполнено (Имеет красный цвет)
 * Внизу колонуи должен быть бар, отображающий сколько всего пунктов чек-листа, сколько выполнено, сколько не выполнено, сколько не рассмотрено (общее колво - (выполнено + не выполнено));
    
-        
+# Разработка
+* http://code.makery.ch/library/javafx-8-tutorial/ru/part1/
+* http://devcolibri.com/3068
+* https://github.com/buckyroberts/Source-Code-from-Tutorials/tree/master/JavaFX
+* http://docs.oracle.com/javase/8/javafx/get-started-tutorial/jfx-overview.htm#JFXST784
