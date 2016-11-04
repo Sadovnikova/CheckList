@@ -11,4 +11,4 @@ appender("STDOUT", ConsoleAppender) {
 }
 
 logger("ru.sibmask", TRACE)
-root(INFO, ["STDOUT"])
+root(TRACE, ["STDOUT"])
