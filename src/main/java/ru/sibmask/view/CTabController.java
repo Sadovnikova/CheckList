@@ -2,11 +2,13 @@ package ru.sibmask.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import lombok.Getter;
 import lombok.Setter;
 import ru.sibmask.MainApp;
+import ru.sibmask.model.Category;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class CTabController {
     private MainApp mainApp;
 
     @FXML
-    private TreeView<String> categoriesTree;
+    private TreeView<Category> categoriesTree;
 
     @FXML
     private ListView<String> checkList;

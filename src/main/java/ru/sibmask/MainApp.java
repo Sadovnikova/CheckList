@@ -11,10 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import ru.sibmask.model.Category;
 import ru.sibmask.view.CTabController;
 import ru.sibmask.view.CTabOverviewController;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @Slf4j
 public class MainApp extends Application {
@@ -23,17 +25,17 @@ public class MainApp extends Application {
     private TabPane cTabOverview;
 
     @Getter
-    private TreeItem<String> categoriesData;
+    private TreeItem<Category> categoriesData;
 
     public MainApp(){
-        categoriesData = new TreeItem<>("root");
-        TreeItem<String> first = new TreeItem<>("1");
-        first.getChildren().add(new TreeItem<>("1.1"));
+        categoriesData = new TreeItem<>(new Category("root"));
+        TreeItem<Category> first = new TreeItem<>(new Category("1"));
+        first.getChildren().add(new TreeItem<>(new Category("1.1")));
         categoriesData.getChildren().add(first);
-        categoriesData.getChildren().add(new TreeItem<>("2"));
-        categoriesData.getChildren().add(new TreeItem<>("3"));
-        categoriesData.getChildren().add(new TreeItem<>("4"));
-        categoriesData.getChildren().add(new TreeItem<>("5"));
+        categoriesData.getChildren().add(new TreeItem<>(new Category("2")));
+        categoriesData.getChildren().add(new TreeItem<>(new Category("3")));
+        categoriesData.getChildren().add(new TreeItem<>(new Category("4")));
+        categoriesData.getChildren().add(new TreeItem<>(new Category("5")));
     }
 
     public static void main(String[] args) {
