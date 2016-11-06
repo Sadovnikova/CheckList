@@ -1,6 +1,8 @@
 package ru.sibmask;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -29,10 +31,18 @@ public class MainApp extends Application {
 
     public MainApp(){
         categoriesData = new TreeItem<>(new Category("root"));
+
         TreeItem<Category> first = new TreeItem<>(new Category("1"));
         first.getChildren().add(new TreeItem<>(new Category("1.1")));
         categoriesData.getChildren().add(first);
-        categoriesData.getChildren().add(new TreeItem<>(new Category("2")));
+
+        Category second = new Category("2");
+        ObservableList<String> objects = FXCollections.observableArrayList();
+        objects.add("2.1");
+        objects.add("2.2");
+        second.setCheckList(objects);
+        categoriesData.getChildren().add(new TreeItem<>(second));
+
         categoriesData.getChildren().add(new TreeItem<>(new Category("3")));
         categoriesData.getChildren().add(new TreeItem<>(new Category("4")));
         categoriesData.getChildren().add(new TreeItem<>(new Category("5")));

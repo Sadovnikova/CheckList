@@ -1,16 +1,13 @@
 package ru.sibmask.view;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import lombok.Getter;
-import lombok.Setter;
 import ru.sibmask.MainApp;
 import ru.sibmask.model.Category;
-
-import java.util.List;
 
 // For actual checklist
 public class CTabController {
@@ -25,9 +22,21 @@ public class CTabController {
 
     @FXML
     private void initialize() {
+        showCategory(null);
+        categoriesTree.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showCategory(newValue));
     }
 
-    public void setMainApp(MainApp mainApp){
+    private void showCategory(TreeItem<Category> categoryNode) {
+        if (categoryNode != null) {
+            Category category = categoryNode.getValue();
+            if (category != null && category.getCheckList() != null) {
+                checkList.setItems(category.getCheckList());
+            }
+        }
+    }
+
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         categoriesTree.setShowRoot(false);
         categoriesTree.setRoot(mainApp.getCategoriesData());

@@ -4,15 +4,21 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Category {
     private StringProperty name;
     private ObjectProperty<List<Category>> subCategory;
-    private ObjectProperty<List<String>> checkList;
+    private ObservableList<String> checkList;
 
     public Category(String name) {
         this.name = new SimpleStringProperty(name);
+        this.subCategory = new SimpleObjectProperty<>(Collections.emptyList());
+        this.checkList = FXCollections.emptyObservableList();
     }
 
     @Override
@@ -45,15 +51,11 @@ public class Category {
         this.subCategory.set(subCategory);
     }
 
-    public List<String> getCheckList() {
-        return checkList.get();
-    }
-
-    public ObjectProperty<List<String>> checkListProperty() {
+    public ObservableList<String> getCheckList() {
         return checkList;
     }
 
-    public void setCheckList(List<String> checkList) {
-        this.checkList.set(checkList);
+    public void setCheckList(ObservableList<String> checkList) {
+        this.checkList = checkList;
     }
 }
