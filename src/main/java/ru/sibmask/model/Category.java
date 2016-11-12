@@ -18,7 +18,7 @@ public class Category {
     public Category(String name) {
         this.name = new SimpleStringProperty(name);
         this.subCategory = new SimpleObjectProperty<>(Collections.emptyList());
-        this.checkList = FXCollections.emptyObservableList();
+        this.checkList = FXCollections.observableArrayList();
     }
 
     @Override
