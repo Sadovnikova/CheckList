@@ -1,8 +1,6 @@
 package ru.sibmask;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -35,25 +33,34 @@ public class MainApp extends Application {
     }
 
     private void exampleFilling() {
-        TreeItem<Category> categoriesData;
-        categoriesData = new TreeItem<>(new Category("root"));
+        Category root = new Category("root");
+        Category sub1 = new Category("1");
+        Category sub11 = new Category("11");
+        Category sub12 = new Category("12");
+        Category sub2 = new Category("2");
+        Category sub3 = new Category("3");
+        root.add(sub1);
+        sub1.add(sub11);
+        sub1.add(sub12);
+        sub1.add("1.1");
+        sub1.add("1.2");
+        root.add(sub2);
+        sub2.add("2.1");
+        root.add(sub3);
 
-        TreeItem<Category> first = new TreeItem<>(new Category("1"));
-        first.getChildren().add(new TreeItem<>(new Category("1.1")));
-        categoriesData.getChildren().add(first);
+        tabsData.put(SIMPLE_EXAMPLE_TAB, fillDataToTree(root));
+    }
 
-        Category second = new Category("2");
-        ObservableList<String> objects = FXCollections.observableArrayList();
-        objects.add("2.1");
-        objects.add("2.2");
-        second.setCheckList(objects);
-        categoriesData.getChildren().add(new TreeItem<>(second));
-
-        categoriesData.getChildren().add(new TreeItem<>(new Category("3")));
-        categoriesData.getChildren().add(new TreeItem<>(new Category("4")));
-        categoriesData.getChildren().add(new TreeItem<>(new Category("5")));
-
-        tabsData.put(SIMPLE_EXAMPLE_TAB, categoriesData);
+    private TreeItem<Category> fillDataToTree(Category root) {
+        TreeItem<Category> result = new TreeItem<>(root);
+        for (Category category : root.getSubCategory()) {
+            TreeItem<Category> least = new TreeItem<>(category);
+            for (Category subCategory : category.getSubCategory()) {
+                least.getChildren().add(new TreeItem<>(subCategory));
+            }
+            result.getChildren().add(least);
+        }
+        return result;
     }
 
     public static void main(String[] args) {

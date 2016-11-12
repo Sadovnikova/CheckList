@@ -17,7 +17,7 @@
                      <contextMenu>
                         <ContextMenu>
                           <items>
-                            <MenuItem fx:id="contextTreeMenuAddCategory" mnemonicParsing="false" text="Add category ..." />
+                            <MenuItem fx:id="contextTreeMenuAddCategory" mnemonicParsing="false" text="Add Category ..." />
                           </items>
                         </ContextMenu>
                      </contextMenu></TreeView>

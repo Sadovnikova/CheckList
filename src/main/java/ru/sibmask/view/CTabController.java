@@ -32,13 +32,13 @@ public class CTabController {
     @FXML
     private MenuItem contextListMenuAddCheck;
 
-    private Category selectedCategory;
+    private TreeItem<Category> selectedCategory;
 
     @FXML
     private void initialize() {
-        showCategory(null);
+        showCategoryCheckList(null);
         categoriesTree.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showCategory(newValue));
+                (observable, oldValue, newValue) -> showCategoryCheckList(newValue));
         contextListMenuAddCheck.setOnAction(this::addCheckListItem);
         contextTreeMenuAddCategory.setOnAction(this::addCategoryItem);
     }
@@ -49,11 +49,11 @@ public class CTabController {
         categoriesTree.setRoot(mainApp.getData(tabName));
     }
 
-    private void showCategory(TreeItem<Category> categoryNode) {
+    private void showCategoryCheckList(TreeItem<Category> categoryNode) {
         if (categoryNode != null) {
-            selectedCategory = categoryNode.getValue();
-            if (selectedCategory != null && selectedCategory.getCheckList() != null) {
-                checkList.setItems(selectedCategory.getCheckList());
+            selectedCategory = categoryNode;
+            if (selectedCategory.getValue() != null && selectedCategory.getValue().getCheckList() != null) {
+                checkList.setItems(selectedCategory.getValue().getCheckList());
             }
         }
     }
@@ -62,9 +62,10 @@ public class CTabController {
         log.info("add to tree");
         String categoryName = addCategoryDialog();
         if (categoryName != null && !categoryName.isEmpty()) {
-            TreeItem<Category> newCategory = new TreeItem<>(new Category(categoryName));
-            TreeItem<Category> categories = mainApp.getData(tabName);
-            categories.getChildren().add(newCategory);
+            Category newCategory = new Category(categoryName);
+            TreeItem<Category> root = mainApp.getData(tabName);
+            root.getChildren().add(new TreeItem<>(newCategory));
+            root.getValue().add(newCategory);
         }
     }
 
@@ -84,8 +85,8 @@ public class CTabController {
         log.info("add to list");
         String checkName = addCheckListDialog();
         if (checkName != null && !checkName.isEmpty()) {
-            // FIXME: does not work with no created lists
-            selectedCategory.getCheckList().add(checkName);
+            log.debug("Add to category '" + selectedCategory.getValue() + "' check '" + checkName + "'");
+            selectedCategory.getValue().getCheckList().add(checkName);
         }
     }
 
