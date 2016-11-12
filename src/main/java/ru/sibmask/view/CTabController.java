@@ -39,6 +39,7 @@ public class CTabController {
         showCategoryCheckList(null);
         categoriesTree.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showCategoryCheckList(newValue));
+        categoriesTree.setCellFactory(p -> new TextFieldTreeCellImpl());
         contextListMenuAddCheck.setOnAction(this::addCheckListItem);
         contextTreeMenuAddCategory.setOnAction(this::addCategoryItem);
     }
