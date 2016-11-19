@@ -26,6 +26,11 @@
     * Не выполнено (Имеет красный цвет)
 * Внизу колонуи должен быть бар, отображающий сколько всего пунктов чек-листа, сколько выполнено, сколько не выполнено, сколько не рассмотрено (общее колво - (выполнено + не выполнено));
    
+# Запуск
+* git clone git@github.com:Sadovnikova/CheckList.git
+* cd CheckList
+* gradlew run
+
 # Разработка
 * http://code.makery.ch/library/javafx-8-tutorial/ru/part1/
 * http://devcolibri.com/3068
