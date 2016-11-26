@@ -1,5 +1,6 @@
 package ru.sibmask.view;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import ru.sibmask.model.Category;
@@ -13,8 +14,10 @@ public class TextFieldTreeCellImpl extends TreeCell<Category> {
         MenuItem addMenuItem = new MenuItem("Add SubCategory ...");
         addMenu.getItems().add(addMenuItem);
         addMenuItem.setOnAction(t -> {
-            TreeItem<Category> newCategory = new TreeItem<>(new Category("New SubCategory"));
-            getTreeItem().getChildren().add(newCategory);
+            Category newCategory = new Category("New SubCategory");
+            TreeItem<Category> newTreeCategory = new TreeItem<>(newCategory);
+            getTreeItem().getChildren().add(newTreeCategory);
+            ((Category) getItem()).add(newCategory);
         });
     }
 
@@ -64,7 +67,8 @@ public class TextFieldTreeCellImpl extends TreeCell<Category> {
         textField = new TextField(getString());
         textField.setOnKeyReleased(t -> {
             if (t.getCode() == KeyCode.ENTER) {
-                commitEdit(new Category(textField.getText()));
+                ((Category) getItem()).setName(new SimpleStringProperty(textField.getText()));
+                commitEdit(getItem());
             } else if (t.getCode() == KeyCode.ESCAPE) {
                 cancelEdit();
             }

@@ -39,6 +39,7 @@ public class CTabController {
         showCategoryCheckList(null);
         categoriesTree.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showCategoryCheckList(newValue));
+        categoriesTree.setEditable(true);
         categoriesTree.setCellFactory(p -> new TextFieldTreeCellImpl());
         contextListMenuAddCheck.setOnAction(this::addCheckListItem);
         contextTreeMenuAddCategory.setOnAction(this::addCategoryItem);
@@ -73,7 +74,6 @@ public class CTabController {
     private String addCategoryDialog() {
         TextInputDialog dialog = new TextInputDialog("categoryName");
         dialog.setTitle("Create new category");
-//        dialog.setHeaderText("Look, a Text Input Dialog");
         dialog.setContentText("Please enter category name:");
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
@@ -84,6 +84,14 @@ public class CTabController {
 
     private void addCheckListItem(ActionEvent event) {
         log.info("add to list");
+        if (selectedCategory == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Select checklist, please!");
+            alert.showAndWait();
+            return;
+        }
         String checkName = addCheckListDialog();
         if (checkName != null && !checkName.isEmpty()) {
             log.debug("Add to category '" + selectedCategory.getValue() + "' check '" + checkName + "'");
@@ -94,7 +102,8 @@ public class CTabController {
     private String addCheckListDialog() {
         TextInputDialog dialog = new TextInputDialog("checkName");
         dialog.setTitle("Create new check");
-//        dialog.setHeaderText("Look, a Text Input Dialog");
+        dialog.getDialogPane().setPrefSize(700, 100);
+        dialog.setResizable(true);
         dialog.setContentText("Please enter check name:");
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {

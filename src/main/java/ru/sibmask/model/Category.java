@@ -3,12 +3,13 @@ package ru.sibmask.model;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Collections;
 import java.util.List;
 
 public class Category {
-    @Getter
+    @Getter @Setter
     private StringProperty name;
     @Getter
     private ListProperty<Category> subCategory;
